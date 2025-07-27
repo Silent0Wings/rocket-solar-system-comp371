@@ -1,0 +1,59 @@
+@startuml
+
+class SceneAssets {
+    +GLuint grass, brick, cement, rock, space, brick2
+    +GLuint sun, earth, jupiter, mars, mercury, neptune, pluto, saturn, uranus, venus, moon
+    +GLuint planetTextures[11]
+    +GLuint rocketTexture
+    +GLuint cubeVAO, planetVAO, rocketVAO, saturnRingVao
+    +int cubeVertices, planet1Vertices, rocketVertices, saturnRingVertices
+    +string cubePath, planetPath, rocketPath, saturnRingPath
+    ...
+}
+
+class CameraState {
+    +vec3 position, orientation
+    +float pitch, yaw
+    +mat4 getViewMatrix()
+    +void updateFromInput()
+}
+
+class Driver {
+    -SceneAssets assets
+    -CameraState camera
+    +main()
+}
+
+class "drawRocket()" <<function>>
+class "drawPlanets()" <<function>>
+class "drawGround()" <<function>>
+class "drawSkybox()" <<function>>
+class "drawCubeField()" <<function>>
+class "loadTexture()" <<function>>
+class "setupModelEBO()" <<function>>
+class "setupModelVBO()" <<function>>
+class "loadSceneAssets()" <<function>>
+class "compileAndLinkShaders()" <<function>>
+class "handleInput()" <<function>>
+class "updateLights()" <<function>>
+class "mainLoop()" <<loop>>
+
+Driver --> SceneAssets : contains
+Driver --> CameraState : contains
+Driver --> "mainLoop()" : contains
+
+"mainLoop()" --> "drawRocket()" : passes assets, camera
+"mainLoop()" --> "drawPlanets()" : passes assets, camera
+"mainLoop()" --> "drawGround()" : passes assets
+"mainLoop()" --> "drawSkybox()" : passes assets
+"mainLoop()" --> "drawCubeField()" : passes assets
+"mainLoop()" --> "handleInput()" : updates camera
+"mainLoop()" --> "updateLights()" : updates
+
+SceneAssets --> "loadSceneAssets()" : returned by
+"loadSceneAssets()" --> "setupModelEBO()" : calls
+"loadSceneAssets()" --> "setupModelVBO()" : calls
+"loadSceneAssets()" --> "loadTexture()" : calls
+"loadSceneAssets()" --> "compileAndLinkShaders()" : calls
+
+@enduml

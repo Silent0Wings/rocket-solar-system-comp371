@@ -1,0 +1,82 @@
+@startuml
+
+state "Window and Context Initialization" as InitGroup {
+  state "Start GLFW (handles window/input)" as GLFW_Init
+  state "Set OpenGL compatibility settings" as OpenGL_Hints
+  state "Create application window" as Create_Window
+  state "Start GLEW (loads OpenGL extensions)" as GLEW_Init
+}
+
+state "Prepare textures, models, shaders" as Load_SceneAssets {
+  state "Call all asset loaders" as LoadScene
+  state "Load image textures" as LoadTexture
+  state "Build mesh buffers with indices" as SetupEBO
+  state "Build mesh buffers without indices" as SetupVBO
+  state "Compile and link GPU shaders" as CompileShaders
+}
+
+state "Initial Scene Setup" as SceneSetup {
+  state "Set background color" as ClearColor
+  state "Set projection matrix" as SetProjection
+  state "Set initial view matrix" as SetView
+  state "Set matrices on shaders" as UploadMatrices
+  state "Enable depth + face culling" as GLStates
+  state "Initialize camera" as InitCamera
+  state "Set shader constants" as ShaderUniforms
+}
+
+state "Main Rendering Loop" as MainLoopGroup {
+  state "Start frame, clear screen" as ClearFrame
+  state "Update camera delta time" as UpdateDelta
+  state "Compute light 1 (orbit camera)" as Light1
+  state "Compute light 2 (orbit center)" as Light2
+  state "Upload lights to shader" as UploadLights
+  state "Draw ground plane" as DrawGround
+  state "Draw skybox background" as DrawSkybox
+  state "Draw rocket model" as DrawRocket
+  state "Draw orbiting planets" as DrawPlanets
+  state "Draw cube field" as DrawCubes
+  state "Process input for camera" as HandleInput
+  state "Swap display buffers" as SwapBuffers
+  state "Poll user/system events" as PollEvents
+}
+
+[*] --> GLFW_Init
+GLFW_Init --> OpenGL_Hints
+OpenGL_Hints --> Create_Window
+Create_Window --> GLEW_Init
+GLEW_Init --> Load_SceneAssets
+
+Load_SceneAssets --> LoadScene
+LoadScene --> LoadTexture
+LoadScene --> SetupEBO
+LoadScene --> SetupVBO
+LoadScene --> CompileShaders
+
+Load_SceneAssets --> SceneSetup
+SceneSetup --> ClearColor
+SceneSetup --> SetProjection
+SceneSetup --> SetView
+SceneSetup --> UploadMatrices
+SceneSetup --> GLStates
+SceneSetup --> InitCamera
+SceneSetup --> ShaderUniforms
+
+SceneSetup --> MainLoopGroup
+
+MainLoopGroup --> UpdateDelta
+UpdateDelta --> ClearFrame
+ClearFrame --> Light1
+Light1 --> Light2
+Light2 --> UploadLights
+UploadLights --> DrawGround
+DrawGround --> DrawSkybox
+DrawSkybox --> DrawRocket
+DrawRocket --> DrawPlanets
+DrawPlanets --> DrawCubes
+DrawCubes --> HandleInput
+HandleInput --> SwapBuffers
+SwapBuffers --> PollEvents
+PollEvents --> MainLoopGroup
+
+@enduml
