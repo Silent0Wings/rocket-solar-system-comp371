@@ -4,6 +4,7 @@
 
 **Camera Movement**
 - `W/A/S/D`: Move forward / left / backward / right
+- `Space`: Move up  
 - `Left Shift`: Move down  
 - `Mouse`: Look around  
 - `1`: Switch to First-Person Camera  
@@ -25,14 +26,16 @@
 ```
 Project_1
 ├── Models
-│   └── *.obj files
+│   ├── *.obj files
+│   └── *.blend files
 ├── OBJloader.h
 ├── OBJloaderV2.h
 ├── StateDiagram.png
 ├── Textures
 │   └── texture images
 ├── UML.png
-├── preview.png
+├── preview.gif
+├── Export_OBJ.py
 ├── main
 ├── plantUML.txt
 ├── project
@@ -40,7 +43,7 @@ Project_1
 └── stateDiagram.txt
 ```
 
-![Preview](Preview.png)
+![Preview](Preview.gif)
 ![State Diagram](StateDiagram.png)
 ![UML Diagram](UML.png)
 
@@ -71,9 +74,12 @@ main.exe
 - Additional textures: https://ambientcg.com/  
 - Default sphere exported from Blender with triangulate modifier  
 - COMP 371 Labs Framework by Nicolas Bergeron (2019)  
+- Exported all .obj models using custom Blender script `Export_OBJ.py`
 - stb_image setup:
   - Installed via: `sudo apt install libstb-dev`
   - Header located at: `include/stb/stb_image.h`
+  - Compiler flag: `-I../include`
+
 - Common linker flags:
   - lGLEW
   - lGL
