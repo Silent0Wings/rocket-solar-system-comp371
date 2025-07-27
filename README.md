@@ -40,7 +40,7 @@ Project_1
 └── stateDiagram.txt
 ```
 
-![Preview](Preview.png)
+![Preview](Preview.gif)
 ![State Diagram](StateDiagram.png)
 ![UML Diagram](UML.png)
 
