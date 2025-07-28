@@ -3,17 +3,20 @@
 ## Controls
 
 **Camera Movement**
+
 - `W/A/S/D`: Move forward / left / backward / right
-- `Space`: Move up  
-- `Left Shift`: Move down  
-- `Mouse`: Look around  
-- `1`: Switch to First-Person Camera  
+- `Space`: Move up
+- `Left Shift`: Move down
+- `Mouse`: Look around
+- `1`: Switch to First-Person Camera
 - `2`: Switch to Third-Person Camera
 
 **Other**
+
 - `Esc`: Exit program
 
 ## Features
+
 - Free-look camera (mouse + keyboard)
 - Camera-relative movement
 - First-person and third-person camera toggle
@@ -23,6 +26,7 @@
 - Custom OBJ models and textures (not from tutorials)
 
 ## Project Structure
+
 ```
 Project_1
 ├── Models
@@ -49,18 +53,23 @@ Project_1
 
 ## Build Instructions
 
-### Linux/macOS
+### Linux/macOS/wsl
+
 ```bash
-g++ src/*.cpp -o SolarSystem -lGL -lGLEW -lglfw -ldl
-./SolarSystem
+export LIBGL_ALWAYS_SOFTWARE=1
+g++ -o MyApp main.cpp -I../include -L/usr/lib -lGLEW -lGL -lglfw -lm
+./MyApp
 ```
+
 ### Windows
+
 ```bash
 g++ src/*.cpp -o SolarSystem.exe -lglew32 -lglfw3 -lopengl32 -lgdi32
 main.exe
 ```
 
 ## Dependencies
+
 - OpenGL
 - GLFW
 - GLM
@@ -69,13 +78,15 @@ main.exe
 - OBJloader (Tut05-compatible)
 
 ## Resources
-- NASA textures: https://planetpixelemporium.com/mercury.html  
-- Rocket model: https://sketchfab.com/3d-models/space-craft-f7026b90bf9b44c99c15f7afc87bcdd3  
-- Additional textures: https://ambientcg.com/  
-- Default sphere exported from Blender with triangulate modifier  
-- COMP 371 Labs Framework by Nicolas Bergeron (2019)  
+
+- NASA textures: https://planetpixelemporium.com/mercury.html
+- Rocket model: https://sketchfab.com/3d-models/space-craft-f7026b90bf9b44c99c15f7afc87bcdd3
+- Additional textures: https://ambientcg.com/
+- Default sphere exported from Blender with triangulate modifier
+- COMP 371 Labs Framework by Nicolas Bergeron (2019)
 - Exported all .obj models using custom Blender script `Export_OBJ.py`
 - stb_image setup:
+
   - Installed via: `sudo apt install libstb-dev`
   - Header located at: `include/stb/stb_image.h`
   - Compiler flag: `-I../include`
@@ -87,4 +98,5 @@ main.exe
   - lm
 
 ## License
+
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
