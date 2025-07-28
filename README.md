@@ -53,7 +53,7 @@ Project_1
 
 ## Build Instructions
 
-### Linux/macOS/wsl
+### Linux/macOS/wsl               
 
 ```bash
 export LIBGL_ALWAYS_SOFTWARE=1
