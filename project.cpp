@@ -5,6 +5,7 @@
 
 // textures from :https://ambientcg.com/
 
+// Compile to run :
 // export LIBGL_ALWAYS_SOFTWARE=1
 // g++ -o MyApp main.cpp -I../include -L/usr/lib -lGLEW -lGL -lglfw -lm
 // ./MyApp
